@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/aoephtua/ipcamsd-cmd-generator/blob/master/LICENSE)
 
-Web application developed and compiled with **[Svelte](https://github.com/sveltejs/svelte)** to generate commands for **[ipcamsd](https://github.com/aoephtua/ipcamsd-cmd)**.
+Web application developed and compiled with **[Svelte](https://github.com/sveltejs/svelte)** to generate commands for **[ipcamsd](https://github.com/aoephtua/ipcamsd)**.
 
 It also uses [HTML Web Storage](https://www.w3schools.com/html/html5_webstorage.asp) API, [Bootstrap 5](https://github.com/twbs/bootstrap) front-end framework and [Electron](https://github.com/electron/electron).
 
