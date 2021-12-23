@@ -13,7 +13,8 @@ Licensed under the MIT license. See LICENSE in the project root for license info
     import Line from './Line.svelte';
     import UserControl from './UserControl.svelte';
 
-    export let title, defaults, controls, children, multiple, collapsed;
+    export let title, defaults, controls, children, multiple;
+    export let collapsed = undefined;
     export let setGroups = () => {};
 
     let containerId = getUniqueIdentifier('collapse');

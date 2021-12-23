@@ -4,6 +4,7 @@
   "main": "src/electron.cjs",
   "scripts": {
     "dev": "svelte-kit dev",
+    "electron": "concurrently --kill-others \"svelte-kit dev\" \"electron src/electron.cjs\"",
     "build": "svelte-kit build",
     "build:electron": "npm run build && electron-builder --config build.config.json",
     "package": "svelte-kit package",
@@ -12,6 +13,7 @@
   "devDependencies": {
     "@sveltejs/adapter-static": "^1.0.0-next.22",
     "@sveltejs/kit": "next",
+    "concurrently": "^6.5.1",
     "electron": "^16.0.4",
     "electron-builder": "^22.14.5",
     "svelte": "^3.44.0",
