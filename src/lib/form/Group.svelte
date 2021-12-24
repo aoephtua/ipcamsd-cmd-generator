@@ -19,15 +19,23 @@ Licensed under the MIT license. See LICENSE in the project root for license info
 
     let containerId = getUniqueIdentifier('collapse');
 
+    const onControlsChange = () => {
+        if (collapsed) {
+            setCollapsed();
+        } else {
+            setGroups();
+        }
+    };
+
     const handleAddClick = () => {
         controls = controls.concat([ cloneDeep(defaults) ]);
-        setGroups();
+        onControlsChange();
     };
 
     const handleRemoveClick = () => {
         controls.pop();
         controls = [ ...controls ];
-        setGroups();
+        onControlsChange();
     };
 
     const setCollapsed = () => {
