@@ -86,11 +86,13 @@ Licensed under the MIT license. See LICENSE in the project root for license info
 
 <div class="row">
     <div class="col-8">
-        <Button title="Generate"
-                onClick={handleGenerateClick} />
-        <Button title="Reset"
-                className="btn-primary ms-1"
-                onClick={onReset} />
+        <Button onClick={handleGenerateClick}>
+            Generate
+        </Button>
+        <Button className="btn-primary ms-1"
+                onClick={onReset}>
+            Reset
+        </Button>
     </div>
     <div class="col-4 d-flex align-self-center justify-content-end">
         <Checkbox title="Local Storage"

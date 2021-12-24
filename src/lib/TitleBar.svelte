@@ -29,15 +29,18 @@ Licensed under the MIT license. See LICENSE in the project root for license info
            on:click={electron.showMenu}>
         </i>
         <div class="float-end p-3">
-            <Button title="_"
-                    className="btn-outline-primary btn-sm"
-                    onClick={electron.minimize} />
-            <Button title={maximized ? '[[]]' : '[]'}
-                    className="btn-outline-primary btn-sm ms-1"
-                    onClick={maximize} />
-            <Button title="x"
-                    className="btn-outline-primary btn-sm ms-1"
-                    onClick={electron.close} />
+            <Button className="btn-outline-primary btn-sm"
+                    onClick={electron.minimize}>
+                -
+            </Button>
+            <Button className="btn-outline-primary btn-sm ms-1"
+                    onClick={maximize}>
+                {maximized ? '[[]]' : '[]'}
+            </Button>
+            <Button className="btn-outline-primary btn-sm ms-1"
+                    onClick={electron.close}>
+                x
+            </Button>
         </div>
     </nav>
 

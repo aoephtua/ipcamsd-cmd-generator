@@ -4,7 +4,6 @@ Licensed under the MIT license. See LICENSE in the project root for license info
 -->
 
 <script>
-    export let title;
     export let className = undefined;
     export let type = undefined;
     export let onClick = undefined;
@@ -20,5 +19,5 @@ Licensed under the MIT license. See LICENSE in the project root for license info
         type={type || 'button'}
         on:click={click}
         {disabled}>
-    {title}
+    <slot></slot>
 </button>

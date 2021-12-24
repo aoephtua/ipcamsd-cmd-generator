@@ -58,14 +58,16 @@ Licensed under the MIT license. See LICENSE in the project root for license info
     {#if multiple}
         <div class="col-6">
             <div class="float-end">
-                <Button title="+"
-                        className="btn-primary btn-sm"
+                <Button className="btn-primary btn-sm"
                         onClick={handleAddClick}
-                        disabled={controls.length === multiple?.limit} />
-                <Button title="-"
-                        className="btn-primary btn-sm ms-1"
+                        disabled={controls.length === multiple?.limit}>
+                    +
+                </Button>
+                <Button className="btn-primary btn-sm ms-1"
                         onClick={handleRemoveClick}
-                        disabled={controls.length === 1} />
+                        disabled={controls.length === 1}>
+                    -
+                </Button>
             </div>
         </div>
     {/if}
