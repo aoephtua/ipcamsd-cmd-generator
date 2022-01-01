@@ -9,7 +9,7 @@ Licensed under the MIT license. See LICENSE in the project root for license info
     import { groups, themeClass } from '../stores.js';
 
     import TitleBar from '$lib/TitleBar.svelte';
-	import Form from '$lib/form/Form.svelte';
+    import Form from '$lib/form/Form.svelte';
     import Footer from '$lib/Footer.svelte';
     
     import 'bootstrap/dist/css/bootstrap.min.css';
