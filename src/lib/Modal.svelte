@@ -4,7 +4,10 @@ Licensed under the MIT license. See LICENSE in the project root for license info
 -->
 
 <script>
+    import { fade } from 'svelte/transition';
+
     export let title, id = 'modal';
+    export let notice = undefined;
 
     export const show = () => {
         var modal = new bootstrap.Modal(document.getElementById(id));
@@ -24,7 +27,15 @@ Licensed under the MIT license. See LICENSE in the project root for license info
                 <slot></slot>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                {#if notice}
+                    <span class="float-start text-muted small"
+                          transition:fade>
+                        {notice}
+                    </span>
+                {/if}
+                <button type="button" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
+                    Close
+                </button>
             </div>
         </div>
     </div>

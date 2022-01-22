@@ -6,16 +6,18 @@ Licensed under the MIT license. See LICENSE in the project root for license info
 <script>
     import Modal from '$lib/Modal.svelte';
 
-    export let commands = [], modal = undefined;
+    export let commands = [], modal = undefined, notice;
 
     const copyCommand = (command) => {
         if (command) {
             navigator.clipboard.writeText(command);
+            notice = 'Copied';
+            setTimeout(() => notice = undefined, 350);
         }
     };
 </script>
 
-<Modal title="Commands" bind:this={modal}>
+<Modal title="Commands" {notice} bind:this={modal}>
     {#each commands as command, i}
         <div class={'bg-light rounded p-3' + (i > 0 ? ' mt-3' : '')}>
             <div class="row">
