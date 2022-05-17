@@ -35,7 +35,7 @@ Licensed under the MIT license. See LICENSE in the project root for license info
             </Button>
             <Button className="btn-outline-primary btn-sm ms-1"
                     onClick={maximize}>
-                {maximized ? '[[]]' : '[]'}
+                {maximized ? '[ ]]' : '[ ]'}
             </Button>
             <Button className="btn-outline-primary btn-sm ms-1"
                     onClick={electron.close}>

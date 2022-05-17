@@ -6,7 +6,7 @@ Licensed under the MIT license. See LICENSE in the project root for license info
 <script>
     import Modal from '$lib/Modal.svelte';
 
-    export let commands = [], modal = undefined, notice;
+    export let commands = [], modal = undefined, notice = undefined;
 
     const copyCommand = (command) => {
         if (command) {
