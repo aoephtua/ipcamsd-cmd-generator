@@ -11,10 +11,12 @@
             { 
                 "title": "Date and Time",
                 "controls": [
-                    { "id": "date", "type": "select", "options": ["Today", "Yesterday"], "value": "Today","class": "col-md-6" },
-                    { "id": "custom", "relationId": "date", "type": "date", "class": "col-md-6" },
-                    { "id": "start-time", "reverseKey": true, "type": "time", "step": 1, "class": "col-md-6" },
-                    { "id": "end-time", "reverseKey": true, "type": "time", "step": 1, "class": "col-md-6" },
+                    { "id": "start-date", "type": "select", "options": ["Today", "Yesterday"], "value": "Today", "class": "col-md-4" },
+                    { "id": "start-custom", "relationId": "start-date", "type": "date", "class": "col-md-4" },
+                    { "id": "start-time", "type": "time", "step": 1, "class": "col-md-4" },
+                    { "id": "end-date", "type": "select", "notEquals": "start-date", "options": ["Today", "Yesterday"], "value": "Today", "class": "col-md-4" },
+                    { "id": "end-custom", "relationId": "end-date", "type": "date", "class": "col-md-4" },
+                    { "id": "end-time", "type": "time", "step": 1, "class": "col-md-4" },
                     { "id": "last-minutes", "type": "number", "min": 1, "max": 60, "class": "col-md-6" },
                     { "id": "start-delay", "type": "number", "min": 1, "max": 60, "class": "col-md-6" }
                 ]
@@ -23,7 +25,8 @@
                 "title": "Output",
                 "controls": [
                     { "id": "target-directory", "type": "text", "class": "col-md-6" },
-                    { "id": "filename-prefix", "type": "text", "class": "col-md-6" }
+                    { "id": "filename-prefix", "type": "text", "class": "col-md-6" },
+                    { "id": "separate", "title": "Separate Files", "type": "checkbox", "class": "col-12" }
                 ],
                 "collapsed": true
             },

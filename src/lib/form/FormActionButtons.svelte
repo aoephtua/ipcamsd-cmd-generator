@@ -36,13 +36,26 @@ Licensed under the MIT license. See LICENSE in the project root for license info
         return key;
     };
 
+    const notEquals = (control, entries) => {
+        let notEquals = control.notEquals;
+        if (notEquals) {
+            let relatedControl = entries.find(entry => entry.id === notEquals);
+            if (relatedControl) {
+                return control.value !== relatedControl.value;
+            }
+        }
+        return true;
+    };
+
     const getOptions = (entries) => {
         let options = {};
         if (entries) {
             for (let control of entries) {
                 if (control.value && control.value !== control.default) {
-                    let key = getKey(control);
-                    options[key] = getValue(control);
+                    if (notEquals(control, entries)) {
+                        let key = getKey(control);
+                        options[key] = getValue(control);
+                    }
                 }
             }
         }
