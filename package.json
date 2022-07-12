@@ -3,26 +3,27 @@
   "version": "0.0.1",
   "main": "src/electron.cjs",
   "scripts": {
-    "dev": "svelte-kit dev",
-    "electron": "concurrently --kill-others \"svelte-kit dev\" \"electron src/electron.cjs\"",
-    "build": "svelte-kit build",
+    "dev": "vite dev",
+    "electron": "concurrently --kill-others \"vite dev\" \"electron src/electron.cjs\"",
+    "build": "vite build",
     "build:electron": "npm run build && electron-builder --config build.config.json",
     "package": "svelte-kit package",
-    "preview": "svelte-kit preview"
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "@sveltejs/adapter-static": "^1.0.0-next.31",
-    "@sveltejs/kit": "1.0.0-next.334",
-    "concurrently": "^7.2.0",
-    "electron": "^18.2.3",
-    "electron-builder": "^23.0.3",
-    "svelte": "^3.48.0",
-    "svelte-preprocess": "^4.10.6"
+    "@sveltejs/adapter-static": "^1.0.0-next.35",
+    "@sveltejs/kit": "1.0.0-next.370",
+    "concurrently": "^7.2.2",
+    "electron": "^19.0.8",
+    "electron-builder": "^23.1.0",
+    "svelte": "^3.49.0",
+    "svelte-preprocess": "^4.10.7",
+    "vite": "^2.9.14"
   },
   "type": "module",
   "dependencies": {
     "bootstrap": "^5.1.3",
-    "bootstrap-icons": "^1.8.2",
+    "bootstrap-icons": "^1.8.3",
     "electron-serve": "^1.1.0",
     "lodash-es": "^4.17.21"
   }
