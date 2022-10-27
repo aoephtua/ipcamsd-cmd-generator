@@ -2,9 +2,10 @@
     { 
         "title": "Hosts",
         "controls": [
-            { "id": "host", "type": "text", "value": "192.168.", "class": "col-sm-4" },
-            { "id": "username", "type": "text", "value": "admin", "class": "col-sm-4" },
-            { "id": "password", "type": "text", "value": "admin", "class": "col-sm-4" },
+            { "id": "host", "type": "text", "value": "192.168.", "class": "col-sm-3" },
+            { "id": "firmware", "type": "select", "options": ["hi3510", "reolink"], "value": "hi3510", "class": "col-md-3" },
+            { "id": "username", "type": "text", "value": "admin", "class": "col-sm-3" },
+            { "id": "password", "type": "text", "value": "admin", "class": "col-sm-3" },
             { "id": "ssl", "title": "SSL", "type": "checkbox", "class": "col-12" }
         ],
         "children": [
@@ -26,7 +27,7 @@
                 "controls": [
                     { "id": "target-directory", "type": "text", "class": "col-md-6" },
                     { "id": "filename-prefix", "type": "text", "class": "col-md-6" },
-                    { "id": "separate", "title": "Separate Files", "type": "checkbox", "class": "col-12" }
+                    { "id": "separate-by-date", "type": "checkbox", "class": "col-12" }
                 ],
                 "collapsed": true
             },
