@@ -6,7 +6,7 @@ Licensed under the MIT license. See LICENSE in the project root for license info
 <script>
     import { onMount } from 'svelte';
 
-    import { formStorage } from '../../stores.js';
+    import { mergeCommands, formStorage } from '../../stores.js';
 
     import Button from './Button.svelte';
     import Checkbox from './controls/Checkbox.svelte';
@@ -18,8 +18,14 @@ Licensed under the MIT license. See LICENSE in the project root for license info
 
     const removals = { date: '-', time: ':' };
     
-    const getValue = (control) => {
-        let value = (control.value + '').toLowerCase();
+    const getValue = (control, group) => {
+        let value = control.value + '';
+        if (group && value === '') {
+            value = group.controls.find(ctrl => ctrl.id === control.id)?.value + '';
+        }
+        if (control.strMeth) {
+            value = value[control.strMeth]?.() || value;
+        }
         let removal = removals[control.type];
         if (removal) {
             value = value.replaceAll(removal, '');
@@ -47,14 +53,16 @@ Licensed under the MIT license. See LICENSE in the project root for license info
         return true;
     };
 
-    const getOptions = (entries) => {
+    const getOptions = (entries, group) => {
         let options = {};
         if (entries) {
             for (let control of entries) {
-                if (control.value && control.value !== control.default) {
+                let cmd = control.cmd !== false;
+                let valid = group || control.value;
+                if (cmd && valid && control.value !== control.default) {
                     if (notEquals(control, entries)) {
                         let key = getKey(control);
-                        options[key] = getValue(control);
+                        options[key] = getValue(control, group);
                     }
                 }
             }
@@ -68,22 +76,66 @@ Licensed under the MIT license. See LICENSE in the project root for license info
             .join(' ');
     };
 
+    const isEnabledGroup = (entries) => entries.some(
+        entry => entry.id === 'enabled' && entry.value
+    );
+
+    const hasEnabledGroup = () => groups.some(
+        group => group.entries.some(entry =>
+            isEnabledGroup(entry)
+        )
+    );
+
+    const getGroupOptions = (group) => {
+        const options = [];
+        for (let entry of group.entries) {
+            if (isEnabledGroup(entry)) {
+                options.push(getOptions(entry, group));
+            }
+        }
+        return options;
+    };
+
+    const getMergedOptions = (options) => {
+        const result = {};
+        const keys = options
+            .map(entries => Object.keys(entries))
+            .sort((a, b) => b.length - a.length);
+        for (const key of keys[0]) {
+            result[key] = [];
+            for (const option of options) {
+                result[key].push(option[key]);
+            }
+            if (result[key].every(val => val === result[key][0])) {
+                result[key] = result[key][0];
+            } else {
+                result[key] = result[key].join(' ');
+            }
+        }
+        return result;
+    };
+
     const getNativeCommands = () => {
         let commands = [];
-        for (let group of groups) {
-            let children = {};
-            if (group.children) {
-                for (let child of group.children) {
-                    for (let entry of child.entries) {
-                        children = { ...children, ...getOptions(entry) };
+        if (hasEnabledGroup()) {
+            for (let group of groups) {
+                let children = {};
+                if (group.children) {
+                    for (let child of group.children) {
+                        for (let entry of child.entries) {
+                            children = { ...children, ...getOptions(entry) };
+                        }
                     }
                 }
-            }
-            for (let entry of group.entries) {
-                let options = { ...getOptions(entry), ...children };
-                commands.push(
-                    getCommandString(options)
-                );
+                let options = getGroupOptions(group);
+                if (mergeCommands.get() === 'true') {
+                    options = [].concat(getMergedOptions(options));
+                }
+                for (const entry of options) {
+                    commands.push(
+                        getCommandString({ ...entry, ...children })
+                    );
+                }
             }
         }
         return commands;
@@ -94,8 +146,20 @@ Licensed under the MIT license. See LICENSE in the project root for license info
         modal.show();
     };
 
-    onMount(() => formStorage.init());
+    onMount(() => {
+        mergeCommands.init();
+        formStorage.init();
+    });
 </script>
+
+<div class="row mb-3">
+    <div class="col-12">
+        <Checkbox title="Merge Commands"
+            ctrlId="cbMergeCommands"
+            control={{ value: $mergeCommands }}
+            onClick={() => mergeCommands.switch() } />
+    </div>
+</div>
 
 <div class="row">
     <div class="col-8">

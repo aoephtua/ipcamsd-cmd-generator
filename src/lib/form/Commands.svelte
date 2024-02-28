@@ -18,6 +18,7 @@ Licensed under the MIT license. See LICENSE in the project root for license info
 </script>
 
 <Modal title="Commands" {notice} bind:this={modal}>
+    {#if !commands.length}No commands were generated.{/if}
     {#each commands as command, i}
         <div class={'bg-light rounded p-3' + (i > 0 ? ' mt-3' : '')}>
             <div class="row">

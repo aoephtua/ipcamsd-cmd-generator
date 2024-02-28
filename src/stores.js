@@ -32,6 +32,7 @@ const createWritableStore = (options) => {
             }
             set(value);
         },
+        get: () => localStorage.getItem(key) || defaultValue + '',
         set: (value) => {
             setItem(value);
             set(value);
@@ -67,6 +68,11 @@ const createWritableStore = (options) => {
 
     return store;
 };
+
+export const mergeCommands = createWritableStore({
+    key: 'mergeCommands',
+    type: 'switch'
+});
 
 export const formStorage = createWritableStore({
     key: 'formStorage',
